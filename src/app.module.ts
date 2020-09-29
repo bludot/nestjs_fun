@@ -3,6 +3,7 @@ import { CatsModule } from './cats/cats.module';
 import { DogsModule } from './dogs/dogs.module';
 import { PetsModule } from './pets/pets.module';
 import { MongooseModule } from '@nestjs/mongoose';
+import { MyLogger } from './logger/logger.service';
 
 @Module({
   /**
@@ -23,6 +24,7 @@ import { MongooseModule } from '@nestjs/mongoose';
     DogsModule,
     PetsModule
   ],
+  providers: [MyLogger]
 })
 export class AppModule {
 }
