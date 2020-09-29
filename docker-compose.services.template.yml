@@ -1,0 +1,37 @@
+version: '2.4'
+services:
+  mongo1:
+    container_name: mongo_1
+    image: mongo:4.2.1
+    volumes:
+      - mongo1-data:/data/db
+    command: '--bind_ip_all --replSet rs0'
+    ports:
+      - 27017:27017
+  mongo2:
+    container_name: mongo_2
+    image: mongo:4.2.1
+    volumes:
+      - mongo2-data:/data/db
+    command: '--bind_ip_all --replSet rs0'
+    ports:
+      - 27018:27017
+  mongo3:
+    container_name: mongo_3
+    image: mongo:4.2.1
+    volumes:
+      - mongo3-data:/data/db
+    command: '--bind_ip_all --replSet rs0'
+    ports:
+      - 27019:27017
+  mongoclient:
+    image: mongo:4.2.1
+    container_name: mongoclient_
+    volumes:
+      - ./deployment-scripts:/deployment-scripts
+    entrypoint:
+      - /deployment-scripts/initiate-replica.sh
+volumes:
+  mongo1-data:
+  mongo2-data:
+  mongo3-data:
